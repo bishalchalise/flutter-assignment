@@ -23,30 +23,40 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product App'),
+        leading: const Icon(Icons.arrow_back_ios_new_outlined),
+        title: const Text('Online Store'),
+        backgroundColor: Colors.teal[300],
       ),
       body: Consumer<ProductService>(
         builder: (context, productService, _) {
           if (productService.products.isEmpty) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.teal[300],
+              ),
             );
           } else {
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 3,
-              ),
-              itemCount: productService.products.length,
-              itemBuilder: (context, index) {
-                final product = productService.products[index];
-                return ProductCard(
-                  image: product.image,
-                  title: product.title,
-                  description: product.description,
-                  price: product.price,
-                );
+            return GestureDetector(
+              onTap: () {
+                
               },
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  crossAxisCount: 2,
+                ),
+                itemCount: productService.products.length,
+                itemBuilder: (context, index) {
+                  final product = productService.products[index];
+                  return ProductCard(
+                    image: product.image,
+                    title: product.title,
+                    price: product.price,
+                    rating: product.rating.count,
+                  );
+                },
+              ),
             );
           }
         },

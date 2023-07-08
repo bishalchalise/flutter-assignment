@@ -26,13 +26,14 @@ Once the application is running, you can use the Online Store to browse and purc
 - Search for products by name or description
 - View product details including price, description, and ratings
 
-![HomePage](https://drive.google.com/file/d/1-p_bOYGq9Ww8WJa58WWToos-mwQISJu1/view?usp=drive_link)
 
-![Description Page](https://drive.google.com/file/d/1oX9kaikhxsfk5rVZiP7WP70OucSy0C3Y/view?usp=drive_link)
+https://drive.google.com/file/d/1-p_bOYGq9Ww8WJa58WWToos-mwQISJu1/view?usp=drive_link
 
-![Searched Product in Home Screen](https://drive.google.com/file/d/13lci_79VWzc1TC6TZjgYxDcXHT4ryMu-/view?usp=drive_link)
+https://drive.google.com/file/d/1oX9kaikhxsfk5rVZiP7WP70OucSy0C3Y/view?usp=drive_link
 
-![Searched Screen](https://drive.google.com/file/d/1POuWFg2RK66zx5weYSylOEvITTR0Nzxm/view?usp=drive_link)
+https://drive.google.com/file/d/13lci_79VWzc1TC6TZjgYxDcXHT4ryMu-/view?usp=drive_link
+
+https://drive.google.com/file/d/1POuWFg2RK66zx5weYSylOEvITTR0Nzxm/view?usp=drive_link
 
 ## Features
 

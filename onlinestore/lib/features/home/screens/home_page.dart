@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlinestore/features/home/services/product_service.dart';
 import 'package:onlinestore/features/home/widgets/product_cards.dart';
+import 'package:onlinestore/features/product_details/screen/product_details_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Fetch products when the screen is initialized
     Provider.of<ProductService>(context, listen: false).fetchProducts(context);
   }
 
@@ -23,9 +23,77 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back_ios_new_outlined),
-        title: const Text('Online Store'),
         backgroundColor: Colors.teal[300],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 42,
+                child: Material(
+                  borderRadius: BorderRadius.circular(7),
+                  elevation: 1,
+                  child: TextFormField(
+                    onFieldSubmitted: (value) {},
+                    decoration: InputDecoration(
+                      prefixIcon: InkWell(
+                        onTap: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 6),
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                            size: 23,
+                          ),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.only(
+                        top: 10,
+                      ),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            7,
+                          ),
+                        ),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            7,
+                          ),
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.black38,
+                          width: 1,
+                        ),
+                      ),
+                      hintText: 'Search',
+                      hintStyle: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart,
+              ),
+            ),
+          )
+        ],
       ),
       body: Consumer<ProductService>(
         builder: (context, productService, _) {
@@ -36,27 +104,31 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            return GestureDetector(
-              onTap: () {
-                
-              },
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  crossAxisCount: 2,
-                ),
-                itemCount: productService.products.length,
-                itemBuilder: (context, index) {
-                  final product = productService.products[index];
-                  return ProductCard(
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                crossAxisCount: 2,
+              ),
+              itemCount: productService.products.length,
+              itemBuilder: (context, index) {
+                final product = productService.products[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      ProductDetailsScreen.routeName,
+                      arguments: product,
+                    );
+                  },
+                  child: ProductCard(
                     image: product.image,
                     title: product.title,
                     price: product.price,
-                    rating: product.rating.count,
-                  );
-                },
-              ),
+                    rating: product.rating.rate.toString(),
+                  ),
+                );
+              },
             );
           }
         },

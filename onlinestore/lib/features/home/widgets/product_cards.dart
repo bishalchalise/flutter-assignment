@@ -4,7 +4,7 @@ class ProductCard extends StatelessWidget {
   final String image;
   final String title;
   final double price;
-  final int rating;
+  final String rating;
   const ProductCard({
     super.key,
     required this.image,
@@ -16,6 +16,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      
       elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,7 +32,7 @@ class ProductCard extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitHeight,
               ),
             ),
             const SizedBox(
@@ -65,7 +66,7 @@ class ProductCard extends StatelessWidget {
                     width: 2,
                   ),
                   Text(
-                    "$rating",
+                    rating,
                     maxLines: 2,
                     style: const TextStyle(
                         color: Colors.white,
@@ -76,12 +77,14 @@ class ProductCard extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 3,),
             Text(
               "Price: \$${price.toStringAsFixed(2)}",
               maxLines: 2,
               style: const TextStyle(
+                color: Colors.red,
                   fontFamily: 'avenir',
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   overflow: TextOverflow.ellipsis),
             ),
           ],

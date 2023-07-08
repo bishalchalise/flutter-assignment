@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlinestore/router.dart';
 import 'package:provider/provider.dart';
 import 'features/home/screens/home_page.dart';
 import 'features/home/services/product_service.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        onGenerateRoute: (settings) => generateRoute(settings),
         home: const HomePage(),
       ),
     );

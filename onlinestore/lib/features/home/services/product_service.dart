@@ -8,8 +8,10 @@ import 'dart:convert';
 class ProductService with ChangeNotifier {
   List<Product> _products = [];
 
+//get products
   List<Product> get products => _products;
 
+//fetch products
   Future<void> fetchProducts(BuildContext context) async {
     try {
       final response = await http.get(
